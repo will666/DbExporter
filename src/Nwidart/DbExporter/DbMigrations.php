@@ -4,6 +4,7 @@ use Config;
 use File;
 use Nwidart\DbExporter\Exceptions\InvalidDatabaseException;
 use Str;
+use DB;
 
 class DbMigrations extends DbExporter
 {
@@ -35,6 +36,9 @@ class DbMigrations extends DbExporter
         if (empty($database)) {
             throw new InvalidDatabaseException('No database set in app/config/database.php');
         }
+
+	$dbprefix = DB::getTablePrefix();
+        $database = $dbprefix . $database;
 
         $this->database = $database;
     }
