@@ -25,6 +25,9 @@ class DbSeeding extends DbExporter
      */
     function __construct($database)
     {
+        $dbprefix = DB::getTablePrefix();
+        $database = $dbprefix . $database;
+        
         $this->database = $database;
     }
 
